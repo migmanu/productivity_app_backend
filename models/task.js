@@ -15,7 +15,7 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFind
 const taskSchema = new mongoose.Schema({
     content: String,
     date: Date,
-    priority: Boolean,
+    column: Number,
 })
 
 taskSchema.set('toJSON', {
