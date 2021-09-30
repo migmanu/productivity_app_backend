@@ -20,7 +20,7 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFind
 const taskSchema = new mongoose.Schema({
     content: String,
     date: Date,
-    priority: Boolean,
+    column: Number,
 })
 
 const Task = mongoose.model('Task', taskSchema)
@@ -30,7 +30,7 @@ if (content) {
     const task = new Task({
         content: content,
         date: new Date(),
-        priority: false,
+        column: 0,
     })
 
     task.save().then(result => {
@@ -41,7 +41,7 @@ if (content) {
     console.log('no content input');
     Task.find({}).then(result => {
         result.forEach(task => {
-            console.log(`Task: ${task.content} - Date: ${task.date} - Priority: ${task.priority}`);
+            console.log(`Task: ${task.content} - Date: ${task.date} - Column: ${task.column}`);
         })
         mongoose.connection.close()
     })

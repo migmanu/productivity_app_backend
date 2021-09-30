@@ -57,7 +57,7 @@ app.post('/api/tasks', (request, response) => {
   const task = new Task ({
     content: body.content,
     date: new Date(),
-    priority: false,
+    column: body.column,
   })
 
   task.save().then(savedTask => {
