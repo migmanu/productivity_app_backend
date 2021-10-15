@@ -29,7 +29,7 @@ app.get('/api/tasks', (request, response) => {
 })
 
 app.get('/api/tasks/:id', (request, response) => {
-    console.log('Get single person init');
+    console.log('Get single task init');
     Task.findById(request.params.id)
       .then(task => {
         console.log('match found');
