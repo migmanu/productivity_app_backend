@@ -16,32 +16,25 @@ app.use(express.json())
 app.use(express.static('build'))
 
 
-app.get('/', (request, response) => {
-  console.log('GET src init');
-  response.send('<h1>Hello World!</h1>')
-})
-
 app.get('/api/tasks', (request, response) => {
-    console.log('get tasks init');
-    Task.find({}).then(tasks => {
-      response.json(tasks)
-    })
+  console.log('get tasks init');
+  Task.find({}).then(tasks => {
+    response.json(tasks)
+  })
 })
 
-app.get('/api/tasks/:id', (request, response) => {
-    console.log('Get single task init');
-    Task.findById(request.params.id)
-      .then(task => {
-        console.log('match found');
-        response.json(task)
-      })
-      .catch(() => {
-        console.log('No match found');
-      })
+app.put('/api/tasks/:id', (request, response) => { //update single task
+  console.log('update task init');
+  return Task.updateOne(
+    { _id: String(request.params.id) },
+    { $set: {
+      column: request.body.column,
+      position: request.body.position
+    }}
+  ).then(result => {
+    response.status(200).json({ message: "Update successful!" })
+  })
 })
-
-
-//app.use(morgan(':method :url :status :response-time :body'))
 
 app.post('/api/tasks', (request, response) => {
   console.log('POST method init');
@@ -58,6 +51,7 @@ app.post('/api/tasks', (request, response) => {
     content: body.content,
     date: new Date(),
     column: body.column,
+    position: body.position
   })
 
   task.save().then(savedTask => {
