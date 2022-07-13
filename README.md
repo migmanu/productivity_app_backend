@@ -1,7 +1,7 @@
 
 # Productivity App
 
-This is a personal project meant to practise Full Stack skills.
+This is a personal project meant to practise Full Stack skills. This means integrating different libraries, working with APIs and managing the storage of data in MongoDB.
 
 You can check the online version [here](https://ancient-castle-89334.herokuapp.com/)
 
@@ -31,5 +31,7 @@ A restart button is also included. So far there is yet no option for setting up 
 
 ## kanban Board
 
-The Kanban Board uses 'react-beatutiful-dnd' library to achieve drag and drop within columns. It is also integrated to MongoDB, where cards are stored and fetched from.
+The Kanban Board uses 'react-beatutiful-dnd' library to achieve drag and drop within columns. It is also integrated to MongoDB, through Express, where cards are stored and fetched from.
+
+
 
