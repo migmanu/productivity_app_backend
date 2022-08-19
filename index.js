@@ -25,7 +25,8 @@ app.get('/api/tasks', (request, response) => {
 })
 
 app.put('/api/tasks/:id', (request, response) => { //update single task
-  console.log('update task init');
+  console.log('update task init with body:');
+  console.log(request.body)
   return Task.updateOne(
     { _id: String(request.params.id) },
     {
