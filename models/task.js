@@ -27,17 +27,4 @@ taskSchema.set('toJSON', {
   }
 })
 
-const boardSchema = new mongoose.Schema({
-  board: { type : Array, "default" : [] }
-})
-
-boardSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString()
-    delete returnedObject._id
-    delete returnedObject.__v
-  }
-})
-
-module.exports = mongoose.model('Board', boardSchema)
 module.exports = mongoose.model('Task', taskSchema)

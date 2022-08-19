@@ -39,23 +39,6 @@ app.put('/api/tasks/:id', (request, response) => { //update single task
   })
 })
 
-app.post('/api/board', (request, response) => {
-  console.log('post board init')
-  const body = request.body
-  const t = body[0][0]
-
-  const board = new Board({
-    board: []
-  })
-
-  console.log(`board body is: ${body.board}`)
-  
-  board.save().then()(savedBoard => {
-    console.log('board saved')
-    response.json(savedBoard)
-  })
-})
-
 app.post('/api/tasks', (request, response) => {
   console.log('POST method init');
   const body = request.body
