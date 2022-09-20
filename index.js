@@ -5,7 +5,6 @@ const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
 const Task = require('./models/task')
-const Board = require('./models/task')
 
 
 morgan.token('body', (req, res) => {
@@ -65,8 +64,19 @@ app.post('/api/tasks', (request, response) => {
 
 })
 
+app.delete('api/tasks:id', (request, response) => {
+  console.log(`delete request init`);
+  Task
+  .findByIdAndDelete(request.params.id)
+  .then(doc => {
+    if (!doc) { return response.status(404).end(); }
+    return response.status(204).end();
+  })
+  .catch(err => next(err))
+})
+
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
-  console.log(`Server runnning on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 })
